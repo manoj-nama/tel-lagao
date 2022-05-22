@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-function App() {
+import AmazonInvoice from "./pages/AmazonInvoice";
+import AmazonInvoiceForm from "./pages/AmazonInvoiceForm";
+import FuelBillForm from "./pages/FuelBillForm";
+import Home from "./pages/Home";
+import UdemyCertificate from "./pages/UdemyCertificate";
+import UdemyInvoice from "./pages/UdemyInvoice";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/udemy-certificate" element={<UdemyCertificate />} />
+        <Route path="/udemy-invoice" element={<UdemyInvoice />} />
+        <Route path="/amazon-invoice-form" element={<AmazonInvoiceForm />} />
+        <Route path="/amazon-invoice" element={<AmazonInvoice />} />
+        <Route path="/fuel-bill-form" element={<FuelBillForm />} />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
 
