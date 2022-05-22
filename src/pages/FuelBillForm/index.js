@@ -1,3 +1,5 @@
+import { format, parse } from "date-fns";
+import random from "lodash.random";
 import round from "lodash.round";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -53,41 +55,198 @@ const FuelBillForm = () => {
     context.stroke();
   };
 
+  const downloadBill = () => {
+    const image = canvasRef.current.toDataURL("image/png");
+
+    const link = document.createElement('a');
+    link.download = "bill.png";
+    link.href = image;
+    link.click();
+  };
+
   const onSubmit = data => {
     initCanvas(() => {
       const volume = round(parseFloat(data?.price) / parseFloat(data?.rate), 2).toFixed(2);
       const price = round(parseFloat(data?.price), 2).toFixed(2);
       const rate = round(parseFloat(data?.rate), 2).toFixed(2);
+      const date = parse(data?.date, "yyyy-MM-dd", new Date());
+      const now = new Date();
+      const time = format(now, "hh:mm:ss");
+      const txnId = random(100000, 999999);
+      const billNo = random(100000, 999999);
+      const mobileNo = random(1000000, 9999999);
 
-      writeText(rate, 400, 749, {
+      writeText(data?.pumpName?.toUpperCase(), 32, 342, {
         font: {
-          size: 30,
-          weight: "bold",
-          family: "Fake Receipt"
-        },
-        textBaseline: "top",
-        fillStyle: "#1c1d1f",
-      });
-
-      writeText(volume, 163, 803, {
-        font: {
-          size: 18,
+          size: 36,
           weight: "bold",
           family: "Merchant Copy"
         },
         textBaseline: "top",
-        fillStyle: "#1c1d1f",
+        fillStyle: "#3d3c3a",
       });
 
-      writeText(price, 215, 776, {
+      writeText(data?.city?.toUpperCase(), 32, 372, {
         font: {
-          size: 18,
+          size: 36,
           weight: "bold",
           family: "Merchant Copy"
         },
         textBaseline: "top",
-        fillStyle: "#1c1d1f",
+        fillStyle: "#3d3c3a",
       });
+
+      writeText(`MOB.976${mobileNo}`, 32, 402, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+
+      writeText(`Bill No  :${billNo}-ORGNL`, 32, 480, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+      
+      writeText(`Trns.ID  :0000000000${txnId}`, 32, 510, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+
+      writeText(`Atnd.ID  :`, 32, 540, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+
+      writeText(`Vehi.No  :NotEntered`, 32, 570, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+      
+      writeText(`Date     :${format(date, "dd/MM/yy")}`, 32, 600, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+
+      writeText(`Time     :${time}`, 32, 630, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+      
+      writeText(`FP. ID   :2`, 32, 660, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+
+      writeText(`Nozl No  :3`, 32, 690, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+
+      writeText(`Fuel     :`, 32, 720, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+
+      writeText(`Dencity  :8237kg/m3`, 32, 750, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+
+      writeText(`Preset   :Rs. ${price}`, 32, 780, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+
+      writeText(`Rate     :Rs. ${rate}`, 32, 810, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+
+      writeText(`Sale     :Rs. ${price}`, 32, 840, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+
+      writeText(`Volume   :${volume}L`, 32, 870, {
+        font: {
+          size: 36,
+          weight: "bold",
+          family: "Merchant Copy"
+        },
+        textBaseline: "top",
+        fillStyle: "#3d3c3a",
+      });
+
+      downloadBill();
     });
   }
 
@@ -98,6 +257,33 @@ const FuelBillForm = () => {
           <h4>Fuel Bill</h4>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
+              <div className="col-12 col-md-6">
+                <input
+                  placeholder="Pump Name"
+                  className="form-control"
+                  type="text"
+                  {...register("pumpName", { required: true })}
+                />
+                {errors.pumpName && <div className="text-danger small">This field is required</div>}
+              </div>
+              <div className="col-12 col-md-6">
+                <input
+                  placeholder="City"
+                  className="form-control"
+                  type="text"
+                  {...register("city", { required: true })}
+                />
+                {errors.city && <div className="text-danger small">This field is required</div>}
+              </div>
+              <div className="col-12 col-md-6">
+                <input
+                  placeholder="Date"
+                  className="form-control"
+                  type="date"
+                  {...register("date", { required: true })}
+                />
+                {errors.date && <div className="text-danger small">This field is required</div>}
+              </div>
               <div className="col-12 col-md-6">
                 <input
                   placeholder="Rate"
@@ -121,7 +307,6 @@ const FuelBillForm = () => {
                 {errors.price && <div className="text-danger small">This field is required</div>}
               </div>
               <div className="col-12 mt-3">
-                <p style={{fontFamily: "Merchant Copy"}}>hiiii</p>
                 <button type="submit" className="btn btn-primary">
                   Create Bill
                 </button>
@@ -129,7 +314,8 @@ const FuelBillForm = () => {
             </div>
           </form>
         </div>
-        <canvas ref={canvasRef} height={1048} width={444}/>
+        <h1 style={{fontFamily: "Merchant Copy", opacity: "0"}}>Hiii</h1>
+        <canvas style={{display: "none"}} ref={canvasRef} height={1035} width={454}/>
       </section>
     </AppLayout>
   );
