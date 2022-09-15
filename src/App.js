@@ -6,6 +6,8 @@ import FuelBillForm from "./pages/FuelBillForm";
 import Home from "./pages/Home";
 import UdemyCertificate from "./pages/UdemyCertificate";
 import UdemyInvoice from "./pages/UdemyInvoice";
+import WiFiForm from "./pages/WiFiForm";
+import WiFiInvoice from "./pages/WiFiInvoice";
 
 const App = () => {
   return (
@@ -17,7 +19,8 @@ const App = () => {
         <Route path="/amazon-invoice-form" element={<AmazonInvoiceForm />} />
         <Route path="/amazon-invoice" element={<AmazonInvoice />} />
         <Route path="/fuel-bill-form" element={<FuelBillForm />} />
-
+        <Route path="/wifi-form" element={<WiFiForm />} />
+        <Route path="/wifi-invoice" element={<WiFiInvoice />} />
       </Routes>
     </BrowserRouter>
   );

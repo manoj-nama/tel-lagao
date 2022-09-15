@@ -58,6 +58,7 @@ const AmazonInvoiceForm = () => {
                   placeholder="Pincode"
                   className="form-control"
                   type="number"
+                  min="0"
                   {...register("pincode", { required: true })}
                 />
                 {errors.pincode && <div className="text-danger small">This field is required</div>}
@@ -90,6 +91,17 @@ const AmazonInvoiceForm = () => {
                   {...register("price", { required: true })}
                 />
                 {errors.price && <div className="text-danger small">This field is required</div>}
+              </div>
+              <div className="col-12 col-md-6">
+                <input
+                  placeholder="GST Percentage"
+                  className="form-control"
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  {...register("gst", { required: true })}
+                />
+                {errors.gst && <div className="text-danger small">This field is required</div>}
               </div>
               <div className="col-12 mt-3">
                 <button type="submit" className="btn btn-primary">
