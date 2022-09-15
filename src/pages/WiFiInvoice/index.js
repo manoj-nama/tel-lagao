@@ -19,7 +19,7 @@ const WiFiInvoice = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
     timeoutRef.current = setTimeout(() => {
-      // window.print();
+      window.print();
     }, 1000);
   }, []);
 
