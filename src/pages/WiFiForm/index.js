@@ -28,6 +28,24 @@ const WiFiForm = () => {
               </div>
               <div className="col-12 col-md-6">
                 <input
+                  placeholder="Address 1"
+                  className="form-control"
+                  type="text"
+                  {...register("address1", { required: true })}
+                />
+                {errors.address1 && <div className="text-danger small">This field is required</div>}
+              </div>
+              <div className="col-12 col-md-6">
+                <input
+                  placeholder="Address 2"
+                  className="form-control"
+                  type="text"
+                  {...register("address2", { required: true })}
+                />
+                {errors.address2 && <div className="text-danger small">This field is required</div>}
+              </div>
+              <div className="col-12 col-md-6">
+                <input
                   placeholder="Date"
                   className="form-control"
                   type="date"
@@ -37,13 +55,12 @@ const WiFiForm = () => {
               </div>
               <div className="col-12 col-md-6">
                 <input
-                  placeholder="Landline Number"
+                  placeholder="Username"
                   className="form-control"
-                  type="number"
-                  min="0"
-                  {...register("landline", { required: true })}
+                  type="text"
+                  {...register("username", { required: true })}
                 />
-                {errors.landline && <div className="text-danger small">This field is required</div>}
+                {errors.username && <div className="text-danger small">This field is required</div>}
               </div>
               <div className="col-12 col-md-6">
                 <input

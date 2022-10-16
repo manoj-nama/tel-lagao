@@ -341,3 +341,11 @@ img {
     size: auto;
     margin: 0;
 }
+
+table.border {
+    border-collapse: collapse;
+}
+
+table.border, .border tr, .border td {
+    border: 2px solid #dddddd;
+}
