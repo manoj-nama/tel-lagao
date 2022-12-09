@@ -69,9 +69,8 @@ const FuelBillForm = () => {
       const volume = round(parseFloat(data?.price) / parseFloat(data?.rate), 2).toFixed(2);
       const price = round(parseFloat(data?.price), 2).toFixed(2);
       const rate = round(parseFloat(data?.rate), 2).toFixed(2);
-      const date = parse(data?.date, "yyyy-MM-dd", new Date());
-      const now = new Date();
-      const time = format(now, "hh:mm:ss");
+      const date = parse(data?.date, "yyyy-MM-dd'T'HH:mm", new Date());
+      const time = format(date, "HH:mm:ss");
       const txnId = random(100000, 999999);
       const billNo = random(100000, 999999);
       const mobileNo = random(1000000, 9999999);
@@ -279,7 +278,7 @@ const FuelBillForm = () => {
                 <input
                   placeholder="Date"
                   className="form-control"
-                  type="date"
+                  type="datetime-local"
                   {...register("date", { required: true })}
                 />
                 {errors.date && <div className="text-danger small">This field is required</div>}
