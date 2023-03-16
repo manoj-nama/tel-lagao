@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import parse from 'date-fns/parse';
 import format from 'date-fns/format';
+import { expandN } from 'regex-to-strings';
 
 import AppLayout from "../../components/AppLayout";
 
@@ -50,7 +51,7 @@ const UdemyCertificate = () => {
     context.beginPath();
     if (option.font) {
       let font = '';
-      if (option.font.weight) 
+      if (option.font.weight)
         font = font + option.font.weight + ' ';
 
       if (option.font.size)
@@ -64,6 +65,11 @@ const UdemyCertificate = () => {
     
     if (option.textBaseline) context.textBaseline = option.textBaseline;
     if(option.fillStyle) context.fillStyle = option.fillStyle;
+    if (option.textAlign) {
+      context.textAlign = option.textAlign
+    } else {
+      context.textAlign = "left";
+    }
     const lines = text.split('\n');
     lines.forEach((line, i) => {
       context.fillText(line, x, y + (i * (option.font.size + 15)));
@@ -136,6 +142,27 @@ const UdemyCertificate = () => {
         textBaseline: "top",
         fillStyle: "#1c1d1f",
       });
+
+
+      const fontStyle = {
+        font: {
+          size: 12,
+          family: "Arial, sans-serif"
+        },
+        textAlign: "right",
+        textBaseline: "top",
+        fillStyle: "#a9aaab",
+      };
+
+      const certificatNumberPattern = /^([a-z]{1}\d{4}[a-z]{1}\d{1})[a-z]{1}-\d{4}-\d{1}[a-z]{3}-\d{1}[a-z]{1}\d{2}-\d{3}[a-z]{1}\d{3}[a-z]{2}\d{3}$/;
+      const [certificateNumber] = expandN(certificatNumberPattern, 1);
+
+      const lines = [
+        `Certificate no: UC-${certificateNumber}`,
+        `Certificate url: ude.my/UC-${certificateNumber}`,
+        "Reference Number: 0004"
+      ]
+      writeText(lines.join("\n"), 942 + 325, 90, fontStyle);
 
       downloadCertificate();
     });

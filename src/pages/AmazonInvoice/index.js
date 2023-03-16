@@ -221,7 +221,7 @@ const AmazonInvoice = () => {
                                 {searchParams.get('itemName')}
                             </p>
                             <p className="s6" style={{ "paddingLeft": "1pt", "WebkitTextIndent": "0pt", "textIndent": "0pt", "lineHeight": "10pt", "WebkitTextAlign": "left", "textAlign": "left" }}>
-                                HSN:4202
+                                HSN:{random(1000, 9999)}
                             </p>
                         </td>
                         <td style={{ "width": "42pt", "borderTopStyle": "solid", "borderTopWidth": "1pt", "borderLeftStyle": "solid", "borderLeftWidth": "1pt", "borderBottomStyle": "solid", "borderBottomWidth": "1pt", "borderRightStyle": "solid", "borderRightWidth": "1pt" }}>
@@ -313,7 +313,7 @@ const AmazonInvoice = () => {
                             Payment Transaction ID:
                         </p>
                         <p className="s10" style={{ "paddingLeft": "4pt", "WebkitTextIndent": "0pt", "textIndent": "0pt", "WebkitTextAlign": "left", "textAlign": "left" }}>
-                            11115eT29Cl8WmpUyvPX5UMUD
+                        {random(10000, 99999)}eT29Cl8WmpUyvPX5UMUD
                         </p>
                     </td>
                     <td style={{ "width": "131pt", "borderTopStyle": "solid", "borderTopWidth": "1pt", "borderLeftStyle": "solid", "borderLeftWidth": "1pt", "borderBottomStyle": "solid", "borderBottomWidth": "1pt", "borderRightStyle": "solid", "borderRightWidth": "1pt" }}>
