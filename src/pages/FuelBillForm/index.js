@@ -64,6 +64,10 @@ const FuelBillForm = () => {
     link.click();
   };
 
+  const onDownload = () => {
+    downloadBill();
+  }
+
   const onSubmit = data => {
     initCanvas(() => {
       const volume = round(parseFloat(data?.price) / parseFloat(data?.rate), 2).toFixed(2);
@@ -245,18 +249,18 @@ const FuelBillForm = () => {
         fillStyle: "#3d3c3a",
       });
 
-      downloadBill();
+      // downloadBill();
     });
   }
 
   return (
     <AppLayout>
-      <section>
-        <div className="container py-4">
+      <section style={{display: 'flex'}}>
+        <div className="container py-4" style={{maxWidth: '540px', margin: 0}}>
           <h4>Fuel Bill</h4>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
-              <div className="col-12 col-md-6">
+              <div className="col-12">
                 <input
                   placeholder="Pump Name"
                   className="form-control"
@@ -265,7 +269,7 @@ const FuelBillForm = () => {
                 />
                 {errors.pumpName && <div className="text-danger small">This field is required</div>}
               </div>
-              <div className="col-12 col-md-6">
+              <div className="col-12">
                 <input
                   placeholder="City"
                   className="form-control"
@@ -274,7 +278,7 @@ const FuelBillForm = () => {
                 />
                 {errors.city && <div className="text-danger small">This field is required</div>}
               </div>
-              <div className="col-12 col-md-6">
+              <div className="col-12">
                 <input
                   placeholder="Date"
                   className="form-control"
@@ -283,7 +287,7 @@ const FuelBillForm = () => {
                 />
                 {errors.date && <div className="text-danger small">This field is required</div>}
               </div>
-              <div className="col-12 col-md-6">
+              <div className="col-12">
                 <input
                   placeholder="Rate"
                   className="form-control"
@@ -294,7 +298,7 @@ const FuelBillForm = () => {
                 />
                 {errors.rate && <div className="text-danger small">This field is required</div>}
               </div>
-              <div className="col-12 col-md-6">
+              <div className="col-12">
                 <input
                   placeholder="Total Price"
                   className="form-control"
@@ -309,12 +313,15 @@ const FuelBillForm = () => {
                 <button type="submit" className="btn btn-primary">
                   Create Bill
                 </button>
+                <button onClick={onDownload} type="button" className="btn btn-primary">
+                  Download Bill
+                </button>
               </div>
             </div>
           </form>
         </div>
         <h1 style={{fontFamily: "Merchant Copy", opacity: "0"}}>Hiii</h1>
-        <canvas style={{display: "none"}} ref={canvasRef} height={1035} width={454}/>
+        <canvas ref={canvasRef} height={1035} width={454}/>
       </section>
     </AppLayout>
   );
