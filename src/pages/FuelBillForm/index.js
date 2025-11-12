@@ -15,22 +15,26 @@ const FuelBillForm = () => {
     { id: 2, name: 'Merchant Copy' },
     { id: 3, name: 'Droid Sans Mono' },
     { id: 4, name: 'Consolas' },
+    { id: 5, name: 'Sis' },
+    { id: 6, name: 'Fake Receipt' },
   ];
   const brands = [
-    { id: 1, name: 'HP', url: '/assets/images/fuel-hp.jpg' },
-    { id: 2, name: 'BP', url: '/assets/images/fuel-bp.jpg' }
+    { id: 1, name: 'HP', url: '/assets/images/fuel-hp.png' },
+    { id: 2, name: 'BP', url: '/assets/images/fuel-bp.jpg' },
+    { id: 3, name: 'HP2', url: '/assets/images/bg3.jpg' },
+    { id: 3, name: 'IOCL', url: '/assets/images/iocl.png' },
   ];
   const fields = [
     { x: 32, y: 342, templ: ({ pumpName }) => `${pumpName}` },
     { x: 32, y: 372, templ: ({ city }) => `${city}` },
     { x: 32, y: 402, templ: ({ mobileNo }) => `MOB.976${mobileNo}` },
     { x: 32, y: 480, templ: ({ billNo }) => `Bill No  :${billNo}-ORGNL` },
-    { x: 32, y: 510, templ: ({ txnId }) => `Trns.ID  :0000000000${txnId}` },
+    { x: 32, y: 510, templ: ({ txnId }) => `Trns.ID  :000000000${txnId}` },
     { x: 32, y: 540, templ: () => `Atnd.ID  :` },
     { x: 32, y: 570, templ: () => `Vehi.No  :NotEntered` },
     { x: 32, y: 600, templ: ({ date }) => `Date     :${date}` },
     { x: 32, y: 630, templ: ({ time }) => `Time     :${time}` },
-    { x: 32, y: 660, templ: ({ pumpNo }) => `FP. ID   :${pumpNo}` },
+    { x: 32, y: 660, templ: ({ pumpNo }) => `FP.ID    :${pumpNo}` },
     { x: 32, y: 690, templ: ({ nozzle }) => `NozzleNo :${nozzle}` },
     { x: 32, y: 720, templ: () => `Fuel     :PETROL` },
     { x: 32, y: 750, templ: () => `Density  :7479kg/m3` },
@@ -39,6 +43,7 @@ const FuelBillForm = () => {
     { x: 32, y: 840, templ: ({ price }) => `Sale     :Rs. ${price}` },
     { x: 32, y: 870, templ: ({ volume }) => `Volume   :${volume}L` },
     { x: 90, y: 910, templ: () => `THANKS FOR FUELING` },
+    { x: 145, y: 940, templ: () => `VISIT AGAIN` },
   ];
 
   const initCanvas = (options, callback) => {
@@ -248,7 +253,7 @@ const FuelBillForm = () => {
               </div>
               <div className="col-12 mt-3">
                 <button type="submit" className="btn btn-primary">
-                  Create Bill
+                  Preview
                 </button>
                 <button onClick={onDownload} type="button" className="btn btn-primary">
                   Download Bill
